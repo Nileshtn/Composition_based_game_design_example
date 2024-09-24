@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dblh2ic2d53f2"]
+
+[ext_resource type="Script" path="res://Scripts/health_furit.gd" id="1_wsyjt"]
+[ext_resource type="Texture2D" uid="uid://co7oeap0jvahy" path="res://assets/sprites/fruit.png" id="2_n4as1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f61mp"]
+radius = 6.0
+
+[node name="health_furit" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_wsyjt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("2_n4as1")
+region_enabled = true
+region_rect = Rect2(0, 49, 17, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -5)
+shape = SubResource("CircleShape2D_f61mp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

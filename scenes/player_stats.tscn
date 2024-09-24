@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://chdse8jc7fjqa"]
+
+[ext_resource type="FontFile" uid="uid://bv0wp5e4akmkl" path="res://assets/fonts/PixelOperator8.ttf" id="1_3qof2"]
+[ext_resource type="Script" path="res://Scripts/player_stats.gd" id="1_b2i0e"]
+[ext_resource type="Texture2D" uid="uid://c4wfff8h7xjn6" path="res://assets/sprites/coin.png" id="1_nb60u"]
+
+[sub_resource type="Theme" id="Theme_70b41"]
+default_font = ExtResource("1_3qof2")
+default_font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_1k2eb"]
+font_size = 45
+font_color = Color(1, 0.777667, 0.42, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i4rjg"]
+bg_color = Color(0.6, 0.6, 0.6, 0.0901961)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vy1e"]
+bg_color = Color(1, 0.03, 0.0461664, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="playerStats" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_70b41")
+script = ExtResource("1_b2i0e")
+
+[node name="coin" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1039.0
+offset_top = 42.0
+offset_right = 1140.0
+offset_bottom = 126.0
+text = "0"
+label_settings = SubResource("LabelSettings_1k2eb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1029, 80)
+scale = Vector2(4, 4)
+texture = ExtResource("1_nb60u")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="healthbar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 905.0
+offset_top = 8.0
+offset_right = 1142.0
+offset_bottom = 35.0
+theme_override_styles/background = SubResource("StyleBoxFlat_i4rjg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4vy1e")
+step = 1.0
+value = 100.0
+rounded = true
+show_percentage = false
