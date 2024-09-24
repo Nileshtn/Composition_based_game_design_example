@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dyg41mckgse17"]
+[gd_scene load_steps=37 format=3 uid="uid://dyg41mckgse17"]
 
 [ext_resource type="Texture2D" uid="uid://bask8i810qenb" path="res://assets/sprites/knight.png" id="1_3oct7"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_rfnmf"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bfdqvfbh8d07c" path="res://scenes/hit_area_component.tscn" id="4_o665r"]
 [ext_resource type="PackedScene" uid="uid://bg4nwu0flv8w8" path="res://scenes/attack_component.tscn" id="5_812xi"]
 [ext_resource type="Texture2D" uid="uid://bo43et45fhovs" path="res://assets/sprites/hamer.png" id="6_xpwdw"]
+[ext_resource type="AudioStream" uid="uid://dajvoc0253faq" path="res://assets/sounds/tap.wav" id="7_84q23"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iq2dt"]
 atlas = ExtResource("1_3oct7")
@@ -258,6 +259,20 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0, 2.38586]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("tap")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_1xxyy"]
 resource_name = "attack_left"
@@ -285,12 +300,41 @@ tracks/1/keys = {
 "update": 0,
 "values": [1.8326, -0.785398]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("tap")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_5ql7t"]
+resource_name = "on_hammer_hit"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tap")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b2dre"]
 _data = {
 "RESET": SubResource("Animation_2wtba"),
 "attack_left": SubResource("Animation_1xxyy"),
 "attack_right": SubResource("Animation_q0680"),
+"on_hammer_hit": SubResource("Animation_5ql7t"),
 "on_hurt": SubResource("Animation_lwtsl")
 }
 
@@ -346,6 +390,11 @@ position = Vector2(-3.8147e-06, -6)
 scale = Vector2(0.0710938, 0.0710938)
 texture = ExtResource("6_xpwdw")
 offset = Vector2(-78.03, -76.335)
+
+[node name="tap" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_84q23")
+volume_db = -0.265
+pitch_scale = 0.21
 
 [connection signal="on_health_increase" from="health_component" to="." method="_on_health_component_on_health_increase"]
 [connection signal="on_health_reduce" from="health_component" to="." method="_on_health_component_on_health_reduce"]
